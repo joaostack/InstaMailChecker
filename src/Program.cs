@@ -21,15 +21,15 @@ namespace InstaMailChecker
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(art);
+            Console.ResetColor();
 
-            if (args.Length == 0)
+            if (args.Length < 2)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Specify target mail!");
+                Console.ResetColor();
                 return;
             }
-
-            Console.ResetColor();
 
             var mail = args[1].Trim();
             var hash = await GetHash();
