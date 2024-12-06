@@ -31,7 +31,7 @@ namespace InstaMailChecker
                 return;
             }
 
-            var mail = args[1].Trim();
+            var mail = args[0].Trim();
             var hash = await GetHash();
             await CheckMail(hash, mail, "@joaostack");
         }
