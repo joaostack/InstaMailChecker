@@ -23,7 +23,7 @@ namespace InstaMailChecker
             Console.WriteLine(art);
             Console.ResetColor();
 
-            if (args.Length < 2)
+            if (args.Length == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Specify target mail!");
