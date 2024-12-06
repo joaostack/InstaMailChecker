@@ -7,14 +7,29 @@ namespace InstaMailChecker
     public class Program
     {
         private static readonly HttpClient _client = new HttpClient();
+        private static readonly string art = @"
+       /\       
+      /  \      
+     /,--.\     
+    /< () >\    
+   /  `--'  \   
+  /          \  
+ /            \ 
+/______________\";
 
         static async Task Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(art);
+
             if (args.Length == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Specify target mail!");
                 return;
             }
+
+            Console.ResetColor();
 
             var mail = args[1].Trim();
             var hash = await GetHash();
