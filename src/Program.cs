@@ -33,7 +33,7 @@ namespace InstaMailChecker
 
             var mail = args[0].Trim();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"[+] Checking '{mail}'...");
+            Console.WriteLine($"[*] Checking '{mail}'...");
             Console.ResetColor();
             var hash = await GetHash();
             await CheckMail(hash, mail, "@joaostack");
