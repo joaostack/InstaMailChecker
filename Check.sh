@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+[[ $(type -P figlet) ]] || { echo "Missing figlet, install it!" ; exit 1 ; }
+[[ $(type -P lolcat) ]] || { echo "Missing lolcat, install it!" ; exit 1 ; }
+
 figlet "InstaUserCHK" | lolcat
 
 if [[ -z "$1" ]]; then
