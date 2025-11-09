@@ -41,11 +41,7 @@ namespace InstaMailChecker
 
         public static async Task<string> GetHash()
         {
-            var response = await _client.GetAsync("https://api.cafeeazam.com/api/user/getHash");
-            var json = await response.Content.ReadAsStringAsync();
-            var hash = JsonSerializer.Deserialize<HashModel>(json);
-
-            return hash?.hash ?? Guid.NewGuid().ToString();
+            return Guid.NewGuid().ToString();
         }
 
         public static async Task CheckMail(string hash, string mail, string testPass)
