@@ -12,7 +12,7 @@
 
 ## Requirements for C# version
 ```
-dotnet6.0+
+dotnet8.0+
 ```
 
 ## Install and Run
