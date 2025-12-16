@@ -10,12 +10,20 @@
        Checks if the specified email is registered on Instagram.
 ```
 
-## Requirements for C# version
-```
-dotnet8.0+
-```
+## Dependencies
+- [.NET 8+](https://dotnet.microsoft.com/en-us/download)
 
 ## Install and Run
 ```
 git clone https://github.com/joaostack/InstaMailChecker && cd InstaMailChecker && dotnet run
+```
+
+## Author
+
+<b>João H.</b> (joaostack) – [GitHub](https://github.com/joaostack)
+
+Donations
+**Monero (XMR)**
+```
+4BE47AD2o1QFu2oq1HEx6i9QBM2xcMaMGSc4vdW9sPZz8LNNue9DZqqiagR9KbQndYgNNTmDjXY87CdQTETAFmAgSSjAEQj
 ```
