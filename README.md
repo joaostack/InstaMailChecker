@@ -15,7 +15,7 @@
 
 ## Install and Run
 ```
-git clone https://github.com/joaostack/InstaMailChecker && cd InstaMailChecker && dotnet run --project src
+git clone https://github.com/joaostack/InstaMailChecker; cd InstaMailChecker; dotnet run --project src
 ```
 
 ## Author
