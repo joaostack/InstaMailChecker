@@ -8,15 +8,17 @@
                                                                                  
                                                                                  
        Checks if the specified email is registered on Instagram.
+
+USAGE:
+    InstaMailChecker.dll [OPTIONS]
+
+OPTIONS:
+    -h, --help     Prints help information
+    -e, --email    Target e-mail. Required
 ```
 
 ## Dependencies
 - [.NET 8+](https://dotnet.microsoft.com/en-us/download)
-
-## Install and Run
-```
-git clone https://github.com/joaostack/InstaMailChecker; cd InstaMailChecker; dotnet run --project src
-```
 
 ## Author
 
