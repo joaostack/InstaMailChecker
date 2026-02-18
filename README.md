@@ -18,7 +18,7 @@ OPTIONS:
 ```
 
 ## Dependencies
-- [.NET 8+](https://dotnet.microsoft.com/en-us/download)
+- [.NET 9+](https://dotnet.microsoft.com/en-us/download)
 
 ## Author
 
