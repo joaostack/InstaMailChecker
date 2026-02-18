@@ -68,23 +68,6 @@ public class Instagram
     public Instagram(HttpClient httpClient)
     {
         _httpClient = httpClient;
-
-        // first headers section
-        _httpClient.DefaultRequestHeaders.Clear();
-        _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36");
-        _httpClient.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8");
-        _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
-        _httpClient.DefaultRequestHeaders.Add("Connection", "keep-alive");
-
-        // second headers section
-        _httpClient.DefaultRequestHeaders.Clear();
-        _httpClient.DefaultRequestHeaders.Add("Host", "i.instagram.com");
-        _httpClient.DefaultRequestHeaders.Add("Connection", "Keep-Alive");
-        _httpClient.DefaultRequestHeaders.Add("User-Agent", "Instagram 6.12.1 Android (29/10; 480dpi; 1080x2137; HUAWEI/HONOR; JSN-L22; HWJSN-H; kirin710; en_SA)");
-        _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-SA, en-US");
-        _httpClient.DefaultRequestHeaders.Add("X-IG-Connection-Type", "WIFI");
-        _httpClient.DefaultRequestHeaders.Add("X-IG-Capabilities", "AQ==");
-
     }
 
     public async Task<int> CheckMail(string mail, string testPass)
@@ -95,6 +78,13 @@ public class Instagram
             var guid = Guid.NewGuid().ToString();
             var hash = Guid.NewGuid().ToString();
 
+            // first headers section
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36");
+            _httpClient.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8");
+            _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
+            _httpClient.DefaultRequestHeaders.Add("Connection", "keep-alive");
+
             // Grep CSRF Token
             var signUp = await _httpClient.GetAsync("https://www.instagram.com/accounts/emailsignup/");
             var signUpBody = await signUp.Content.ReadAsStringAsync();
@@ -102,6 +92,15 @@ public class Instagram
             Match match = Regex.Match(signUpBody, pattern);
             var version = Environment.GetEnvironmentVariable("Version") ?? string.Empty;
             _httpClient.DefaultRequestHeaders.Add("Cookie2", version + "=1");
+
+            // second headers section
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Add("Host", "i.instagram.com");
+            _httpClient.DefaultRequestHeaders.Add("Connection", "Keep-Alive");
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "Instagram 6.12.1 Android (29/10; 480dpi; 1080x2137; HUAWEI/HONOR; JSN-L22; HWJSN-H; kirin710; en_SA)");
+            _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-SA, en-US");
+            _httpClient.DefaultRequestHeaders.Add("X-IG-Connection-Type", "WIFI");
+            _httpClient.DefaultRequestHeaders.Add("X-IG-Capabilities", "AQ==");
 
             if (match.Success)
             {
