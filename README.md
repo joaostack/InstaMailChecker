@@ -20,6 +20,11 @@ OPTIONS:
 ## Dependencies
 - [.NET 9+](https://dotnet.microsoft.com/en-us/download)
 
+## Read mails list
+```bash
+cat mails.txt | xargs -I@ sh -c './InstaMailChecker -e @'
+```
+
 ## Author
 
 <b>João H.</b> (joaostack) – [GitHub](https://github.com/joaostack)
