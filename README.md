@@ -27,7 +27,7 @@ cat mails.txt | xargs -I@ sh -c './InstaMailChecker -e @'
 
 ## Read mails list parallel
 ```
-cat mails.txt | parallel -I% 'InstaMailChecker -e %'
+cat mails.txt | parallel -I% './InstaMailChecker -e %'
 ```
 
 ## Author
