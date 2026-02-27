@@ -29,9 +29,9 @@ public class Commands : AsyncCommand<Commands.Settings>
         {
             var targetMail = settings.TargetMail;
             var httpClient = new HttpClient();
-            var instagram = new Instagram(httpClient);
-            var randomPass = new Random().Next(100000000);
-            var responseStatus = await instagram.CheckMail(targetMail, randomPass.ToString());
+            var randomPass = new Random().Next();
+
+            var responseStatus = await Instagram.CheckMail(targetMail, randomPass.ToString(), cancellationToken);
 
             switch (responseStatus)
             {
@@ -39,7 +39,8 @@ public class Commands : AsyncCommand<Commands.Settings>
                     AnsiConsole.MarkupLine($"[bold blue][[+]][/] [bold green]E-mail '{targetMail}' is UP![/]");
                     break;
                 case 429:
-                    AnsiConsole.MarkupLine("[bold blue][[-]][/] [bold red]Error 429 (try use different IP address)[/]");
+                    AnsiConsole.MarkupLine("[bold blue][[-]][/] [bold red]Error 429, waiting 10 seconds... (Or try to use different IP address)[/]");
+                    Thread.Sleep(10000);
                     break;
                 case 404:
                     AnsiConsole.MarkupLine($"[bold blue][[-]][/] [bold red]E-mail '{targetMail}' is DOWN![/]");
@@ -63,14 +64,9 @@ public class Commands : AsyncCommand<Commands.Settings>
 
 public class Instagram
 {
-    private static HttpClient _httpClient { get; set; }
+    private static readonly HttpClient _httpClient = new HttpClient();
 
-    public Instagram(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
-
-    public async Task<int> CheckMail(string mail, string testPass)
+    public static async Task<int> CheckMail(string mail, string testPass, CancellationToken cancellationToken)
     {
         try
         {
@@ -86,8 +82,8 @@ public class Instagram
             _httpClient.DefaultRequestHeaders.Add("Connection", "keep-alive");
 
             // Grep CSRF Token
-            var signUp = await _httpClient.GetAsync("https://www.instagram.com/accounts/emailsignup/");
-            var signUpBody = await signUp.Content.ReadAsStringAsync();
+            var signUp = await _httpClient.GetAsync("https://www.instagram.com/accounts/emailsignup/", cancellationToken);
+            var signUpBody = await signUp.Content.ReadAsStringAsync(cancellationToken);
             var pattern = "\"csrf_token\":\"(.*?)\"";
             Match match = Regex.Match(signUpBody, pattern);
             var version = Environment.GetEnvironmentVariable("Version") ?? string.Empty;
@@ -120,8 +116,8 @@ public class Instagram
                     new KeyValuePair<string, string>("signed_body", $"{Guid.NewGuid().ToString("N")}.{System.Text.Json.JsonSerializer.Serialize(data)}")
                 });
 
-                var login = await _httpClient.PostAsync("https://i.instagram.com/api/v1/accounts/login/", content);
-                var response = await login.Content.ReadAsStringAsync();
+                var login = await _httpClient.PostAsync("https://i.instagram.com/api/v1/accounts/login/", content, cancellationToken);
+                var response = await login.Content.ReadAsStringAsync(cancellationToken);
 
                 if (response.Contains("bad_password"))
                 {
