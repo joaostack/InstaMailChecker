@@ -25,6 +25,11 @@ OPTIONS:
 cat mails.txt | xargs -I@ sh -c './InstaMailChecker -e @'
 ```
 
+## Read mails list parallel
+```
+cat mails.txt | parallel -I% 'InstaMailChecker -e %'
+```
+
 ## Author
 
 <b>João H.</b> (joaostack) – [GitHub](https://github.com/joaostack)
