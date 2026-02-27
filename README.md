@@ -6,8 +6,8 @@
   _| |_| | | \__ \ || (_| | |  | | (_| | | | |____| | | |  __/ (__|   <  __/ |   
  |_____|_| |_|___/\__\__,_|_|  |_|\__,_|_|_|\_____|_| |_|\___|\___|_|\_\___|_|   
                                                                                  
-                                                                                 
-       Checks if the specified email is registered on Instagram.
+
+  A OSINT tool that checks if the specified email is registered on Instagram.
 
 USAGE:
     InstaMailChecker.dll [OPTIONS]
