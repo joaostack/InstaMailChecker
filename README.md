@@ -26,8 +26,13 @@ cat mails.txt | xargs -I@ sh -c './InstaMailChecker -e @'
 ```
 
 ## Read mails list using GNU Parallel
-```
+```bash
 cat mails.txt | parallel -I% './InstaMailChecker -e %'
+```
+
+## Save results
+```bash
+cat mails.txt | parallel -I% './InstaMailChecker -e %' | tee results.txt
 ```
 
 ## Author
