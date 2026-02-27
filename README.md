@@ -20,20 +20,29 @@ OPTIONS:
 ## Dependencies
 - [.NET 9](https://dotnet.microsoft.com/en-us/download)
 
-## Read mails list
+---
+
+## Basic Usage
+```bash
+./InstaMailChecker -e target@gmail.com
+```
+
+#### Read mails list
 ```bash
 cat mails.txt | xargs -I@ sh -c './InstaMailChecker -e @'
 ```
 
-## Read mails list using GNU Parallel
+#### Read mails list using GNU Parallel
 ```bash
 cat mails.txt | parallel -I% './InstaMailChecker -e %'
 ```
 
-## Save results
+#### Save results
 ```bash
 cat mails.txt | parallel -I% './InstaMailChecker -e %' | tee results.txt
 ```
+
+---
 
 ## Author
 
