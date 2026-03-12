@@ -32,7 +32,7 @@ OPTIONS:
 cat mails.txt | xargs -I@ sh -c './InstaMailChecker -e @'
 ```
 
-#### Fast reading mails list using GNU Parallel
+#### Fast mails reading with GNU Parallel
 ```bash
 cat mails.txt | parallel -I% './InstaMailChecker -e %'
 ```
