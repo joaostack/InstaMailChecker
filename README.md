@@ -18,7 +18,7 @@ OPTIONS:
 ```
 
 ## Dependencies
-- [.NET 9](https://dotnet.microsoft.com/en-us/download)
+- [.NET 10](https://dotnet.microsoft.com/en-us/download)
 
 ---
 
